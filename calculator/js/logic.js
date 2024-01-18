@@ -4,7 +4,7 @@ const DIVISION_BY_ZERO_ERROR = 'Невозможно поделить на 0!'
 // Функция clearLastAction очищает последний символ строки
 const clearLastAction = (theLine) => {
 
-    theLine.charAt(theLine.length - 1) === ' ' ?
+    theLine.slice(-1) === ' ' ?
         theLine = theLine.slice(0, -3) :
         theLine = theLine.slice(0, -1)
 
@@ -23,7 +23,7 @@ const constructTheLine = (theLine, state) => {
 
     } else if (state === '.') {
 
-        if (/[0-9]/.test(theLine.charAt(theLine.length - 1)) &&
+        if (/[0-9]/.test(theLine.slice(-1)) &&
             theLine.split(' ').at(-1).indexOf('.') === -1) {
             theLine += state
         }
@@ -32,7 +32,7 @@ const constructTheLine = (theLine, state) => {
 
         state = ' ' + state + ' '
 
-        theLine.charAt(theLine.length - 1) === ' ' ?
+        theLine.slice(-1) === ' ' ?
             theLine = theLine.slice(0, -3) + state :
             theLine += state
     }
@@ -45,7 +45,7 @@ const doMath = (theLine) => {
 
     let isDivisionByZero = false
 
-    if (theLine.charAt(theLine.length - 1) === ' ') theLine = clearLastAction(theLine)
+    if (theLine.slice(-1) === ' ') theLine = clearLastAction(theLine)
 
     let result = 0
 
